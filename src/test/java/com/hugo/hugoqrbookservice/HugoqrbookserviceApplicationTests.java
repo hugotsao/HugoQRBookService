@@ -1,4 +1,4 @@
-package com.hugoqrbook.hugoqrbookservice;
+package com.hugo.hugoqrbookservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

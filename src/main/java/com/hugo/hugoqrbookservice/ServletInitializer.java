@@ -1,4 +1,4 @@
-package com.hugoqrbook.hugoqrbookservice;
+package com.hugo.hugoqrbookservice;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
