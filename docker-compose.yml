@@ -1,7 +1,8 @@
 version: '3.0'
 services:
-  web:
+  hugoqrbookservice:
     build: .
+    image: hugotsaodocker/hugoqrbookservice
     ports:
     - "8080:8080"
   mongo:
