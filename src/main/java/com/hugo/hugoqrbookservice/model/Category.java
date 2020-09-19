@@ -1,9 +1,11 @@
 package com.hugo.hugoqrbookservice.model;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 @Data
 public class Category {
-    private final Integer id;
+    @Id private final String id;
+    private final Integer categoryId;
     private final String name;
 }
