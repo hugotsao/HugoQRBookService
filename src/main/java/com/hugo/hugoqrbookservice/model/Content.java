@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 @Data
 public class Content {
     @Id
-    private final String id;
-    private final Integer articleId;
-    private final String content;
+    private String id;
+    private Integer articleId;
+    private String content;
 }
