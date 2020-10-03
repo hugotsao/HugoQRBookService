@@ -15,9 +15,9 @@ public class ContentController {
     public Content getContentById(@PathVariable int articleId) {
         return contentRepository.findByArticleId(articleId);
     }
-    @PutMapping("/content/{articleId}")
-    public void addNewContent(@PathVariable int articleId, @RequestBody Content newContent) {
-        Content oldContent = contentRepository.findByArticleId(articleId);
+    @PutMapping("/content/")
+    public void addOrUpdateContent(@RequestBody Content newContent) {
+        Content oldContent = contentRepository.findByArticleId(newContent.getArticleId());
         if(oldContent != null) {
             newContent.setId(oldContent.getId());
         }

@@ -15,8 +15,17 @@ import java.util.List;
 public class ArticleController {
     @Autowired
     ArticleRepository articleRepository;
+
     @GetMapping("/articles")
     public List<Article> getArticles() {
         return articleRepository.findAll(Sort.by(Sort.Direction.DESC, "publishDate"));
+    }
+    @GetMapping("/articles/genNewArticleId")
+    public Integer getLatestArticleId() {
+        List<Article> articles = articleRepository.findAll(Sort.by(Sort.Direction.DESC, "articleId"));
+        if (articles != null && articles.size() > 0) {
+            return articles.get(0).getArticleId() + 1;
+        }
+        return 1;
     }
 }
