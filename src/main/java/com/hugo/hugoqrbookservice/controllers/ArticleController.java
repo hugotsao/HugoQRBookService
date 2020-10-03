@@ -4,9 +4,7 @@ import com.hugo.hugoqrbookservice.model.Article;
 import com.hugo.hugoqrbookservice.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +25,21 @@ public class ArticleController {
             return articles.get(0).getArticleId() + 1;
         }
         return 1;
+    }
+
+    @PutMapping("/article")
+    public Article addOrUpdateArticle(@RequestBody Article newArticle) {
+        Article oldArticle = this.articleRepository.findByArticleId(newArticle.getArticleId());
+        if (oldArticle != null) {
+            newArticle.setId(oldArticle.getId());
+        }
+        return this.articleRepository.save(newArticle);
+    }
+    @DeleteMapping("/article/{articleId}")
+    public void deleteArticle(@PathVariable Integer articleId){
+        Article articleToDelete = this.articleRepository.findByArticleId(articleId);
+        if (articleToDelete != null){
+            this.articleRepository.delete(articleToDelete);
+        }
     }
 }

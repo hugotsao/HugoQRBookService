@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 
 @Data
 public class Category {
-    @Id private final String id;
+    @Id private String id;
     private final Integer categoryId;
     private final String name;
 }

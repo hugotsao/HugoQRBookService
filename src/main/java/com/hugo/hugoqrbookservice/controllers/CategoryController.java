@@ -3,10 +3,8 @@ package com.hugo.hugoqrbookservice.controllers;
 import com.hugo.hugoqrbookservice.model.Category;
 import com.hugo.hugoqrbookservice.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -20,8 +18,19 @@ public class CategoryController {
         return categoryRepository.findAll();
     }
 
-    @PostMapping("/category")
-    public Category addCategory(Category newCategory) {
-        return categoryRepository.insert(newCategory);
+    @PutMapping("/category")
+    public Category addOrUpdateCategory(Category newCategory) {
+        Category oldCategory = this.categoryRepository.findByName(newCategory.getName());
+        if (oldCategory != null) {
+            return oldCategory;
+        }
+        return categoryRepository.save(newCategory);
+    }
+    @DeleteMapping("/category/{categoryName}")
+    public void deleteCategory(@PathVariable String categoryName) {
+        Category category = this.categoryRepository.findByName(categoryName);
+        if(category != null) {
+            this.categoryRepository.delete(category);
+        }
     }
 }

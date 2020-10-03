@@ -16,11 +16,18 @@ public class ContentController {
         return contentRepository.findByArticleId(articleId);
     }
     @PutMapping("/content/")
-    public void addOrUpdateContent(@RequestBody Content newContent) {
+    public Content addOrUpdateContent(@RequestBody Content newContent) {
         Content oldContent = contentRepository.findByArticleId(newContent.getArticleId());
         if(oldContent != null) {
             newContent.setId(oldContent.getId());
         }
-        contentRepository.save(newContent);
+        return contentRepository.save(newContent);
+    }
+    @DeleteMapping("/content/{articleId}")
+    public void deleteContent(@PathVariable Integer articleId) {
+        Content article = this.contentRepository.findByArticleId(articleId);
+        if (article != null) {
+            this.contentRepository.delete(article);
+        }
     }
 }
