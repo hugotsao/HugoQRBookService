@@ -15,12 +15,14 @@ public class ContentController {
     public Content getContentById(@PathVariable int articleId) {
         return contentRepository.findByArticleId(articleId);
     }
-    @PutMapping("/content/")
-    public Content addOrUpdateContent(@RequestBody Content newContent) {
-        Content oldContent = contentRepository.findByArticleId(newContent.getArticleId());
-        if(oldContent != null) {
-            newContent.setId(oldContent.getId());
-        }
+
+    @PostMapping("/content")
+    public Content addContent(@RequestBody Content newContent) {
+        return this.contentRepository.insert(newContent);
+    }
+
+    @PutMapping("/content")
+    public Content updateContent(@RequestBody Content newContent) {
         return contentRepository.save(newContent);
     }
     @DeleteMapping("/content/{articleId}")

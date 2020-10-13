@@ -1,7 +1,7 @@
-FROM openjdk:14-alpine as builder
+FROM gradle:jdk14 as builder
 WORKDIR /HugoQRBookService
 COPY . .
-RUN ./gradlew build
+RUN gradle build
 
 FROM openjdk:14-alpine
 RUN addgroup -S hugo && adduser -S hugo -G hugo

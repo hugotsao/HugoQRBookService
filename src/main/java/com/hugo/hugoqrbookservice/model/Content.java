@@ -2,11 +2,13 @@ package com.hugo.hugoqrbookservice.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
+@Document(collection = "contents")
 public class Content {
     @Id
-    private String id;
-    private final Integer articleId;
-    private final String content;
+    private String contentId;
+    private String articleId;
+    private String content;
 }

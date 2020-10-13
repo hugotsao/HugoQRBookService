@@ -18,25 +18,19 @@ public class ArticleController {
     public List<Article> getArticles() {
         return articleRepository.findAll(Sort.by(Sort.Direction.DESC, "publishDate"));
     }
-    @GetMapping("/articles/genNewArticleId")
-    public Integer getLatestArticleId() {
-        List<Article> articles = articleRepository.findAll(Sort.by(Sort.Direction.DESC, "articleId"));
-        if (articles != null && articles.size() > 0) {
-            return articles.get(0).getArticleId() + 1;
-        }
-        return 1;
+
+    @PostMapping("/article")
+    public Article addArticle(@RequestBody Article newArticle){
+        return this.articleRepository.insert(newArticle);
     }
 
     @PutMapping("/article")
-    public Article addOrUpdateArticle(@RequestBody Article newArticle) {
-        Article oldArticle = this.articleRepository.findByArticleId(newArticle.getArticleId());
-        if (oldArticle != null) {
-            newArticle.setId(oldArticle.getId());
-        }
+    public Article updateArticle(@RequestBody Article newArticle) {
         return this.articleRepository.save(newArticle);
     }
     @DeleteMapping("/article/{articleId}")
-    public void deleteArticle(@PathVariable Integer articleId){
+    public void deleteArticle(@PathVariable
+                              String articleId){
         Article articleToDelete = this.articleRepository.findByArticleId(articleId);
         if (articleToDelete != null){
             this.articleRepository.delete(articleToDelete);

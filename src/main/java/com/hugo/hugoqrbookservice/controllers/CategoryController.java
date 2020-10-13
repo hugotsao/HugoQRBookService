@@ -18,17 +18,17 @@ public class CategoryController {
         return categoryRepository.findAll();
     }
 
+    @PostMapping("/category")
+    public Category addCategory(@RequestBody Category newCategory) {
+        return this.categoryRepository.insert(newCategory);
+    }
     @PutMapping("/category")
-    public Category addOrUpdateCategory(Category newCategory) {
-        Category oldCategory = this.categoryRepository.findByName(newCategory.getName());
-        if (oldCategory != null) {
-            return oldCategory;
-        }
+    public Category updateCategory(@RequestBody Category newCategory) {
         return categoryRepository.save(newCategory);
     }
     @DeleteMapping("/category/{categoryName}")
     public void deleteCategory(@PathVariable String categoryName) {
-        Category category = this.categoryRepository.findByName(categoryName);
+        Category category = this.categoryRepository.findByCategoryName(categoryName);
         if(category != null) {
             this.categoryRepository.delete(category);
         }

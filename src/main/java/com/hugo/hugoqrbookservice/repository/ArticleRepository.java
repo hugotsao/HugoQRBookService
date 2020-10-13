@@ -4,5 +4,5 @@ import com.hugo.hugoqrbookservice.model.Article;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface ArticleRepository extends MongoRepository<Article, String> {
-    Article findByArticleId(Integer articleId);
+    Article findByArticleId(String articleId);
 }
