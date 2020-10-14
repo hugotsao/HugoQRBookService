@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "contents")
 public class Content {
     @Id
-    private String contentId;
     private String articleId;
     private String content;
 }
