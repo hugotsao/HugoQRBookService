@@ -16,9 +16,18 @@ public class ArticleController {
 
     @GetMapping("/articles")
     public List<Article> getArticles() {
-        return articleRepository.findAll(Sort.by(Sort.Direction.DESC, "publishDate"));
+        return articleRepository.findAll(Sort.by(Sort.Order.desc("publishDate")));
     }
 
+    @GetMapping("/article/{articleId}")
+    public Article getArticleById(@PathVariable String articleId) {
+        if ("latest".equals(articleId)) {
+            List<Article> articles = this.getArticles();
+            Article latestArticles = articles.size() > 0 ? articles.get(0) : null;
+            return latestArticles;
+        }
+        return this.articleRepository.findByArticleId(articleId);
+    }
     @PostMapping("/article")
     public Article addArticle(@RequestBody Article newArticle){
         return this.articleRepository.insert(newArticle);

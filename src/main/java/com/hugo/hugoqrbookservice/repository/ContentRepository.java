@@ -5,5 +5,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 public interface ContentRepository extends MongoRepository<Content, String> {
-    Content findByArticleId(Integer articleId);
+    Content findByArticleId(String articleId);
 }
