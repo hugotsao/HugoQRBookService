@@ -3,7 +3,6 @@ package com.hugo.hugoqrbookservice.controllers;
 import com.hugo.hugoqrbookservice.model.Article;
 import com.hugo.hugoqrbookservice.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +15,7 @@ public class ArticleController {
 
     @GetMapping("/articles")
     public List<Article> getArticles() {
-        return articleRepository.findAllOrderByPublishDateDesc();
+        return articleRepository.findAllByOrderByPublishDateDesc();
     }
 
     @GetMapping("/article/{articleId}")

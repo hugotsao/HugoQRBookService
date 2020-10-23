@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ArticleRepository extends MongoRepository<Article, String> {
     Article findByArticleId(String articleId);
-    List<Article> findAllOrderByPublishDateDesc();
+    List<Article> findAllByOrderByPublishDateDesc();
 }
