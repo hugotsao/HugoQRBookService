@@ -16,7 +16,7 @@ public class ArticleController {
 
     @GetMapping("/articles")
     public List<Article> getArticles() {
-        return articleRepository.findAll(Sort.by(Sort.Order.desc("publishDate")));
+        return articleRepository.findAllOrderByPublishDateDesc();
     }
 
     @GetMapping("/article/{articleId}")
@@ -40,9 +40,6 @@ public class ArticleController {
     @DeleteMapping("/article/{articleId}")
     public void deleteArticle(@PathVariable
                               String articleId){
-        Article articleToDelete = this.articleRepository.findByArticleId(articleId);
-        if (articleToDelete != null){
-            this.articleRepository.delete(articleToDelete);
-        }
+        this.articleRepository.deleteById(articleId);
     }
 }

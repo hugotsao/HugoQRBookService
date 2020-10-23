@@ -34,9 +34,6 @@ public class ContentController {
     }
     @DeleteMapping("/content/{articleId}")
     public void deleteContent(@PathVariable String articleId) {
-        Content article = this.contentRepository.findByArticleId(articleId);
-        if (article != null) {
-            this.contentRepository.delete(article);
-        }
+        this.contentRepository.deleteById(articleId);
     }
 }
