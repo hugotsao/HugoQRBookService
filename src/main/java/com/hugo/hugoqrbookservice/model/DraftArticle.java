@@ -1,8 +1,8 @@
 package com.hugo.hugoqrbookservice.model;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.Date;
 import java.util.List;
@@ -10,8 +10,7 @@ import java.util.List;
 @Data
 @Document(collection = "draftArticles")
 public class DraftArticle {
-    @Id
-    private String draftArticleid;
+    @MongoId
     private String articleId;
     private String categoryId;
     private String title;
