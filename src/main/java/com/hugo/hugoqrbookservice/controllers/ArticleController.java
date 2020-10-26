@@ -13,12 +13,12 @@ public class ArticleController {
     @Autowired
     ArticleRepository articleRepository;
 
-    @GetMapping("/articles")
+    @GetMapping("/api/articles/get")
     public List<Article> getArticles() {
         return articleRepository.findAllByOrderByPublishDateDesc();
     }
 
-    @GetMapping("/article/{articleId}")
+    @GetMapping("/api/article/{articleId}")
     public Article getArticleById(@PathVariable String articleId) {
         if ("latest".equals(articleId)) {
             List<Article> articles = this.getArticles();
@@ -27,16 +27,16 @@ public class ArticleController {
         }
         return this.articleRepository.findByArticleId(articleId);
     }
-    @PostMapping("/article")
+    @PostMapping("/api/article/add")
     public Article addArticle(@RequestBody Article newArticle){
         return this.articleRepository.insert(newArticle);
     }
 
-    @PutMapping("/article")
+    @PutMapping("/api/article/update")
     public Article updateArticle(@RequestBody Article newArticle) {
         return this.articleRepository.save(newArticle);
     }
-    @DeleteMapping("/article/{articleId}")
+    @DeleteMapping("/article/{articleId}/delete")
     public void deleteArticle(@PathVariable
                               String articleId){
         this.articleRepository.deleteById(articleId);

@@ -13,20 +13,20 @@ public class CategoryController {
     @Autowired
     CategoryRepository categoryRepository;
 
-    @GetMapping("/categories")
+    @GetMapping("/api/categories/get")
     public List<Category> getCategories() {
         return categoryRepository.findAll();
     }
 
-    @PostMapping("/category")
+    @PostMapping("/api/category/add")
     public Category addCategory(@RequestBody Category newCategory) {
         return this.categoryRepository.insert(newCategory);
     }
-    @PutMapping("/category")
+    @PutMapping("/api/category/update")
     public Category updateCategory(@RequestBody Category newCategory) {
         return categoryRepository.save(newCategory);
     }
-    @DeleteMapping("/category/{categoryName}")
+    @DeleteMapping("/api/category/{categoryName}/delete")
     public void deleteCategory(@PathVariable String categoryName) {
         Category category = this.categoryRepository.findByCategoryName(categoryName);
         if(category != null) {

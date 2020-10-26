@@ -14,25 +14,25 @@ public class ContentController {
     @Autowired
     ContentRepository contentRepository;
 
-    @GetMapping("/contents")
+    @GetMapping("/api/contents/get")
     public List<Content> getContents() {
         return this.contentRepository.findAll();
     }
-    @GetMapping("/content/{articleId}")
+    @GetMapping("/api/content/{articleId}/get")
     public Content getContentById(@PathVariable String articleId) {
         return contentRepository.findByArticleId(articleId);
     }
 
-    @PostMapping("/content")
+    @PostMapping("/api/content/add")
     public Content addContent(@RequestBody Content newContent) {
         return this.contentRepository.insert(newContent);
     }
 
-    @PutMapping("/content")
+    @PutMapping("/api/content/update")
     public Content updateContent(@RequestBody Content newContent) {
         return contentRepository.save(newContent);
     }
-    @DeleteMapping("/content/{articleId}")
+    @DeleteMapping("/api/content/{articleId}/delete")
     public void deleteContent(@PathVariable String articleId) {
         this.contentRepository.deleteById(articleId);
     }

@@ -14,7 +14,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         System.out.println("setting up form login");
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("/edit/*").hasRole(AppRoles.EDITOR.value())
+
+                .antMatchers("/add", "/update", "/delete").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin(formLogin ->
