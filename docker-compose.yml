@@ -3,10 +3,17 @@ services:
   hugoqrbookservice:
     build: .
     image: hugotsaodocker/hugoqrbookservice
+    container_name: hugoqrbookservice
     ports:
     - "8080:8080"
   mongo:
-    image: mongo:latest
+    image: mongo
+    container_name: mongo
+    environment:
+      MONGO_INITDB_DATABASE: hugoqrbook
+    volumes:
+    - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    - ./mongo-store:/data/db
     ports:
     - "27017:27017"
     expose:
