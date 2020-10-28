@@ -18,15 +18,6 @@ public class ArticleController {
         return articleRepository.findAllByOrderByPublishDateDesc();
     }
 
-    @GetMapping("/api/article/{articleId}")
-    public Article getArticleById(@PathVariable String articleId) {
-        if ("latest".equals(articleId)) {
-            List<Article> articles = this.getArticles();
-            Article latestArticles = articles.size() > 0 ? articles.get(0) : null;
-            return latestArticles;
-        }
-        return this.articleRepository.findByArticleId(articleId);
-    }
     @PostMapping("/api/article/add")
     public Article addArticle(@RequestBody Article newArticle){
         return this.articleRepository.insert(newArticle);
@@ -36,7 +27,7 @@ public class ArticleController {
     public Article updateArticle(@RequestBody Article newArticle) {
         return this.articleRepository.save(newArticle);
     }
-    @DeleteMapping("/article/{articleId}/delete")
+    @DeleteMapping("/api/article/{articleId}/delete")
     public void deleteArticle(@PathVariable
                               String articleId){
         this.articleRepository.deleteById(articleId);

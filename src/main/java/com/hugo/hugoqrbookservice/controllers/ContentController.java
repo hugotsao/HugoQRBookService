@@ -18,11 +18,11 @@ public class ContentController {
     public List<Content> getContents() {
         return this.contentRepository.findAll();
     }
+
     @GetMapping("/api/content/{articleId}/get")
     public Content getContentById(@PathVariable String articleId) {
         return contentRepository.findByArticleId(articleId);
     }
-
     @PostMapping("/api/content/add")
     public Content addContent(@RequestBody Content newContent) {
         return this.contentRepository.insert(newContent);
@@ -32,6 +32,7 @@ public class ContentController {
     public Content updateContent(@RequestBody Content newContent) {
         return contentRepository.save(newContent);
     }
+
     @DeleteMapping("/api/content/{articleId}/delete")
     public void deleteContent(@PathVariable String articleId) {
         this.contentRepository.deleteById(articleId);

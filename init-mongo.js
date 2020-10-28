@@ -1,6 +1,6 @@
 db.users.insertOne(
 {username: "hugo",
- password: "I3A0WnZMMCF0Y0Nh"}
+ password: "$2y$12$k0coIV45qtB2H24/XSYCyeLbwsdiV3tWpGmTFvm/zpm2Tz5/vHmXe"}
 )
 db.categories.insertMany([{
                             	"categoryName":"LeetCode"
