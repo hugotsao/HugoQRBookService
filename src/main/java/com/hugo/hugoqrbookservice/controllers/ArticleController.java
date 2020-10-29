@@ -18,6 +18,14 @@ public class ArticleController {
         return articleRepository.findAllByOrderByPublishDateDesc();
     }
 
+    @GetMapping("/api/article/{articleId}/get")
+    public Article getArticle(@PathVariable String articleId) {
+        if("latest".equals(articleId)){
+            List<Article> allArticles = this.articleRepository.findAllByOrderByPublishDateDesc();
+            return allArticles.size() > 0 ? allArticles.get(0) : null;
+        }
+        return articleRepository.findById(articleId).get();
+    }
     @PostMapping("/api/article/add")
     public Article addArticle(@RequestBody Article newArticle){
         return this.articleRepository.insert(newArticle);
