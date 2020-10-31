@@ -3,13 +3,11 @@ package com.hugo.hugoqrbookservice.controllers;
 import com.hugo.hugoqrbookservice.model.Content;
 import com.hugo.hugoqrbookservice.repository.ContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost"})
 public class ContentController {
     @Autowired
     ContentRepository contentRepository;

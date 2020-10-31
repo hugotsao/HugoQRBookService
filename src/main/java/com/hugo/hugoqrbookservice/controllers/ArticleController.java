@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost"},
-        allowedHeaders = {"content-type", "x-auth-token", "x-requested-with"})
 public class ArticleController {
     @Autowired
     ArticleRepository articleRepository;
