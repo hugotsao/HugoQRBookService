@@ -20,22 +20,17 @@ db.articles.insertMany([
         "title": "LC001",
         "tags": ["Array"],
         "references": ["LC002"],
-        "publishDate": "2020-09-20",
-        "modifiedDate": "2020-09-29"
+        "publishDate": new Date("2020-09-20"),
+        "modifiedDate": new Date("2020-09-29"),
+        "content": "LeetCode 1 content"
     },
     {
         "categoryId": "",
         "title": "LC002",
         "tags": ["Array"],
         "references": ["LC001"],
-        "publishDate": "2020-09-25",
-        "modifiedDate": "2020-09-29"
+        "publishDate": new Date("2020-09-25"),
+        "modifiedDate": new Date("2020-09-29"),
+        "content": "LeetCode 2 content"
     }
 ])
-db.contents.insertMany([{
-    "articleId": "",
-    "content": "LeetCode 1 content"
-},{
-    "articleId": "",
-    "content": "LeetCode 2 content"
-}])

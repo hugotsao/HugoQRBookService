@@ -17,6 +17,11 @@ public class ArticleController {
         return articleRepository.findAllByOrderByPublishDateDesc();
     }
 
+    @GetMapping("/api/articles/latest/get")
+    public Article getLatestArticle() {
+        
+        return this.articleRepository.findAllByOrderByPublishDateDesc().get(0);
+    }
     @GetMapping("/api/article/{articleId}/get")
     public Article getArticle(@PathVariable String articleId) {
         if("latest".equals(articleId)){
