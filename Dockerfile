@@ -1,10 +1,10 @@
-FROM gradle:jdk14 as builder
+FROM gradle:jdk8 as builder
 RUN useradd -ms /bin/bash hugo
 WORKDIR /home/hugo/HugoQRBookService
 COPY . .
 RUN gradle build
 
-FROM openjdk:14-alpine
+FROM openjdk:8-jdk-alpine
 RUN addgroup -S hugo && adduser -S hugo -G hugo
 WORKDIR /home/hugo
 USER hugo
