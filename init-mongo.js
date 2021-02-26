@@ -22,7 +22,7 @@ db.articles.insertMany([
         "references": ["LC002"],
         "publishDate": new Date("2020-09-20"),
         "modifiedDate": new Date("2020-09-29"),
-        "content": "LeetCode 1 content"
+        "contentUri": "/home/hugo/workspace/personal/blogs/LC001.LeetCode001"
     },
     {
         "categoryId": "",
@@ -31,6 +31,6 @@ db.articles.insertMany([
         "references": ["LC001"],
         "publishDate": new Date("2020-09-25"),
         "modifiedDate": new Date("2020-09-29"),
-        "content": "LeetCode 2 content"
+        "contentUri": "/home/hugo/workspace/personal/blogs/LC002.LeetCode002"
     }
 ])

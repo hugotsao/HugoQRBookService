@@ -18,5 +18,5 @@ public class Article {
     private List<String> references;
     private Date publishDate;
     private Date modifiedDate;
-    private String content;
+    private String contentUri;
 }

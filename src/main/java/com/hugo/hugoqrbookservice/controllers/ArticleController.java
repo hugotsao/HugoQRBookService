@@ -3,9 +3,11 @@ package com.hugo.hugoqrbookservice.controllers;
 import com.hugo.hugoqrbookservice.model.Article;
 import com.hugo.hugoqrbookservice.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ArticleController {
@@ -13,14 +15,17 @@ public class ArticleController {
     ArticleRepository articleRepository;
 
     @GetMapping("/api/articles/get")
-    public List<Article> getArticles() {
-        return articleRepository.findAllByOrderByPublishDateDesc();
+    public ResponseEntity<List<Article>> getArticles() {
+        return ResponseEntity.of(Optional.of(articleRepository.findAllByOrderByPublishDateDesc()));
     }
 
     @GetMapping("/api/articles/latest/get")
-    public Article getLatestArticle() {
-        
-        return this.articleRepository.findAllByOrderByPublishDateDesc().get(0);
+    public ResponseEntity<Article> getLatestArticle() {
+        List<Article> allArticles = this.articleRepository.findAllByOrderByPublishDateDesc();
+        if (allArticles.size() == 0) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(allArticles.get(0));
     }
     @GetMapping("/api/article/{articleId}/get")
     public Article getArticle(@PathVariable String articleId) {
